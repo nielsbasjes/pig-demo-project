@@ -50,42 +50,39 @@ public class Tokenize extends EvalFunc<DataBag> {
 
     @Override
     public DataBag exec(Tuple input) throws IOException {
-        try {
-            if (input==null)
-                return null;
-            if (input.size()==0)
-                return null;
-            Object o = input.get(0);
-            if (o==null)
-                return null;
-            DataBag output = mBagFactory.newDefaultBag();
-            if (!(o instanceof String)) {
+        if (input==null)
+            return null;
+        if (input.size()==0)
+            return null;
+        Object o = input.get(0);
+        if (o==null)
+            return null;
+        DataBag output = mBagFactory.newDefaultBag();
+        if (!(o instanceof String)) {
+            int errCode = 2114;
+            String msg = "Expected input to be chararray, but" +
+                         " got " + o.getClass().getName();
+            throw new ExecException(msg, errCode, PigException.BUG);
+        }
+
+        String delim = " \",()*";
+        if (input.size()==2) {
+            Object d = input.get(1);
+            if (!(d instanceof String)) {
                 int errCode = 2114;
-                String msg = "Expected input to be chararray, but" +
-                             " got " + o.getClass().getName();
+                String msg = "Expected delim to be chararray, but" +
+                    " got " + d.getClass().getName();
                 throw new ExecException(msg, errCode, PigException.BUG);
             }
-
-            String delim = " \",()*";
-            if (input.size()==2) {
-                Object d = input.get(1);
-                if (!(d instanceof String)) {
-                    int errCode = 2114;
-                    String msg = "Expected delim to be chararray, but" +
-                        " got " + d.getClass().getName();
-                    throw new ExecException(msg, errCode, PigException.BUG);
-                }
-                delim = (String)d;
-            }
-
-            StringTokenizer tok = new StringTokenizer((String)o, delim, false);
-            while (tok.hasMoreTokens()) {
-                output.add(mTupleFactory.newTuple(tok.nextToken()));
-            }
-            return output;
-        } catch (ExecException ee) {
-            throw ee;
+            delim = (String)d;
         }
+
+        StringTokenizer tok = new StringTokenizer((String)o, delim, false);
+        while (tok.hasMoreTokens()) {
+            output.add(mTupleFactory.newTuple(tok.nextToken()));
+        }
+        return output;
+        
     }
 
     @SuppressWarnings("deprecation")
@@ -119,7 +116,7 @@ public class Tokenize extends EvalFunc<DataBag> {
     }
 
     public List<FuncSpec> getArgToFuncMapping() throws FrontendException {
-        List<FuncSpec> funcList = new ArrayList<FuncSpec>();
+        List<FuncSpec> funcList = new ArrayList<>();
         Schema s = new Schema();
         s.add(new Schema.FieldSchema(null, DataType.CHARARRAY));
         funcList.add(new FuncSpec(this.getClass().getName(), s));
@@ -130,4 +127,4 @@ public class Tokenize extends EvalFunc<DataBag> {
         return funcList;
     }
 
-};
+}

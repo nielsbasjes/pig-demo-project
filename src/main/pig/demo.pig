@@ -17,5 +17,10 @@ Clicks =
             Foo:chararray
         );
 
-DUMP Clicks;
+Stuff = FOREACH  Clicks
+        GENERATE URI,
+                 URIClass,
+                 FLATTEN(nl.example.pig.demo.myudf.Tokenize(line)) AS tokens:chararray;
+
+DUMP Stuff;
 
