@@ -1,4 +1,8 @@
+# Project specific things
 docker/_m2/repository/
+docker/_gnupg/random_seed
+docker/_gnupg/S.gpg-agent
+docker/_gnupg/private-keys-v1.d/
 
 # Created by .ignore support plugin (hsz.mobi)
 

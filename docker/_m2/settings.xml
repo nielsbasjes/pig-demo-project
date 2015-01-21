@@ -4,4 +4,38 @@
                               http://maven.apache.org/xsd/settings-1.0.0.xsd">
 
 
+  <servers>
+    <server>
+      <id>passphrase.for.signingkey.BA46BEA6</id>
+      <passphrase>Test</passphrase>
+    </server>
+  </servers>
+
+  <profiles>
+    <profile>
+      <id>sign</id>
+      <properties>
+        <gpg.keyname>BA46BEA6</gpg.keyname>
+        <gpg.passphraseServerId>passphrase.for.signingkey.BA46BEA6</gpg.passphraseServerId>
+      </properties>
+
+      <pluginRepositories>
+        <pluginRepository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>codehaus-staging</id>
+          <name>codehaus-plugins-release-staging</name>
+          <url>https://nexus.codehaus.org/content/groups/staging</url>
+        </pluginRepository>
+      </pluginRepositories>
+
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>sign</activeProfile>
+  </activeProfiles>
+
+
 </settings>

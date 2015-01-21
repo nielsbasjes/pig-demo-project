@@ -1,4 +1,3 @@
-
 FROM centos:7
 
 WORKDIR /root
