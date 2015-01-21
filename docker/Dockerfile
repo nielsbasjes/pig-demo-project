@@ -29,3 +29,5 @@ RUN cd /etc/yum.repos.keys/ && for file in * ; do rpm --import ${file} ; done
 RUN yum install -y pig
 ENV JAVA_HOME /usr/lib/jvm/java
 
+# Set some aliases
+RUN echo "alias dir='ls -laF'" >> /root/.bashrc
