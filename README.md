@@ -1,14 +1,28 @@
 README
 ====
-This is example shows a lost of things combined together:
+This is (in terms of the actual application) a “Hello world” project. It does nothing useful.
 
-- How to write a pig script that 
-    - uses a custom Loader implementation ( https://github.com/nielsbasjes/logparser ) 
-    - tries to keep the pig scripts as clean as possible by using property files.
-- How to write a custom dissector and load in into a pig script.
-- Managing pig projects with maven (downloading the Loader from maven central).
-- Packaging your pig project with ALL required dependencies as a tar.gz and RPM
-- Making a 'reliable' build environment part of your project by means of Docker.
+This project intends to show a possible way of making PIG based project more managable by managing them with Maven.
 
-The result of 'mvn package' is a tar.gz file AND an RPM that contains the 
+So this project shows/provides:
+# A reliable build environment part of the project for use by the developer (uses Docker).
+# Automatically download external dependencies from maven central.
+# How to write a custom Pig UDF 
+    - unit test the UDF.
+    - load in into the pig script.
+# How to write a pig script that 
+    - uses a Loader that was written externally ( https://github.com/nielsbasjes/logparser ) 
+    - tries to keep the pig scripts as clean as possible by 
+        - using property files.
+        - only loading the JAR files that it really needs.
+# Packaging your pig project with ALL required dependencies as a tar.gz and RPM
+    - The RPM build also shows how to separate the BUILD of the RPM (done by developers) from the BUILD+SIGN (done only during a  release)
+
+So the the result of simply running 'mvn package' is a tar.gz file AND an RPM that contains the 
 entire project with all the required dependencies in a lib directory.
+
+
+TODO
+====
+# Add a PigUnit test for the pig script itself.
+
