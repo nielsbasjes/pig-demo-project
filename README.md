@@ -2,7 +2,7 @@ README
 ====
 This is (in terms of the actual application) a "Hello world" project. It does nothing useful.
 
-This project intends to show a possible way of making PIG based project more managable by managing them with Maven.
+This project intends to show a possible way of making PIG based project more manageable by managing them with Maven.
 
 So this project shows/provides:
 
