@@ -19,7 +19,7 @@ So this project shows/provides:
 5. Packaging your pig project with ALL required dependencies as a tar.gz and RPM
     - The RPM build also shows how to separate the BUILD of the RPM (done by developers) from the BUILD+SIGN (done only during a  release)
 
-So the the result of simply running 'mvn package' is a tar.gz file AND an RPM that contains the 
+So the result of simply running 'mvn package' is a tar.gz file AND an RPM that contains the 
 entire project with all the required dependencies in a lib directory.
 
 
