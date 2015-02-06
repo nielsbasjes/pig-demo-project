@@ -78,110 +78,156 @@
                 <version>2.1.2</version>
             </plugin>
 
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <descriptors>
-                        <descriptor>src/main/assembly/assembly.xml</descriptor>
-                    </descriptors>
-                    <archive>
-                        <addMavenDescriptor>false</addMavenDescriptor>
-                    </archive>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
 
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>rpm-maven-plugin</artifactId>
-                <version>2.1.2</version>
-                <configuration>
-                    <license>Apache License v2.0</license>
-                    <packager>Niels Basjes</packager>
-                    <group>Demonstrations</group>
-                    <needarch>noarch</needarch>
-                    <summary>Silly project that uses Apache Pig</summary>
-                    <description>
-                        This really does nothing usefull other than show how things can be setup in combination with Apache Pig.
-                    </description>
-                    <requires>
-                        <require>pig &gt;= ${pig.version}</require>
-                    </requires>
-                    <mappings>
-                        <mapping>
-                            <directory>/opt/${packagedDirectoryName}/</directory>
-                            <username>root</username>
-                            <groupname>root</groupname>
-                            <filemode>755</filemode>
-                            <sources>
-                                <source>
-                                    <location>src/main/bash/</location>
-                                </source>
-                            </sources>
-                        </mapping>
-                        <mapping>
-                            <directory>/opt/${packagedDirectoryName}/pig</directory>
-                            <username>root</username>
-                            <groupname>root</groupname>
-                            <filemode>644</filemode>
-                            <sources>
-                                <source>
-                                    <location>src/main/pig/</location>
-                                </source>
-                            </sources>
-                        </mapping>
-                        <mapping>
-                            <directory>/opt/${packagedDirectoryName}/etc</directory>
-                            <username>root</username>
-                            <groupname>root</groupname>
-                            <filemode>644</filemode>
-                            <sources>
-                                <source>
-                                    <location>src/main/resources/</location>
-                                </source>
-                            </sources>
-                        </mapping>
-                        <mapping>
-                            <directory>/opt/${packagedDirectoryName}/lib</directory>
-                            <username>root</username>
-                            <groupname>root</groupname>
-                            <filemode>644</filemode>
-                            <dependency />
-                        </mapping>
-                        
-                        
-                        <!-- And just for this demo project: -->
-                        <mapping>
-                            <directory>/opt/${packagedDirectoryName}/demolog</directory>
-                            <username>root</username>
-                            <groupname>root</groupname>
-                            <filemode>644</filemode>
-                            <sources>
-                                <source>
-                                    <location>demolog/</location>
-                                </source>
-                            </sources>
-                        </mapping>
-
-                    </mappings>
-                </configuration>
-
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>attached-rpm</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>package-targz</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/main/assembly/assembly.xml</descriptor>
+                            </descriptors>
+                            <archive>
+                                <addMavenDescriptor>false</addMavenDescriptor>
+                            </archive>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>make-assembly</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>package-azkaban</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/main/assembly/azkaban.xml</descriptor>
+                            </descriptors>
+                            <archive>
+                                <addMavenDescriptor>false</addMavenDescriptor>
+                            </archive>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>make-assembly</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>package-rpm</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>rpm-maven-plugin</artifactId>
+                        <version>2.1.2</version>
+                        <configuration>
+                            <license>Apache License v2.0</license>
+                            <packager>Niels Basjes</packager>
+                            <group>Demonstrations</group>
+                            <needarch>noarch</needarch>
+                            <summary>Silly project that uses Apache Pig</summary>
+                            <description>
+                                This really does nothing usefull other than show how things can be setup in combination with Apache Pig.
+                            </description>
+                            <requires>
+                                <require>pig &gt;= ${pig.version}</require>
+                            </requires>
+                            <mappings>
+                                <mapping>
+                                    <directory>/opt/${packagedDirectoryName}/</directory>
+                                    <username>root</username>
+                                    <groupname>root</groupname>
+                                    <filemode>755</filemode>
+                                    <sources>
+                                        <source>
+                                            <location>src/main/bash/</location>
+                                        </source>
+                                    </sources>
+                                </mapping>
+                                <mapping>
+                                    <directory>/opt/${packagedDirectoryName}/pig</directory>
+                                    <username>root</username>
+                                    <groupname>root</groupname>
+                                    <filemode>644</filemode>
+                                    <sources>
+                                        <source>
+                                            <location>src/main/pig/</location>
+                                        </source>
+                                    </sources>
+                                </mapping>
+                                <mapping>
+                                    <directory>/opt/${packagedDirectoryName}/etc</directory>
+                                    <username>root</username>
+                                    <groupname>root</groupname>
+                                    <filemode>644</filemode>
+                                    <sources>
+                                        <source>
+                                            <location>src/main/resources/</location>
+                                        </source>
+                                    </sources>
+                                </mapping>
+                                <mapping>
+                                    <directory>/opt/${packagedDirectoryName}/lib</directory>
+                                    <username>root</username>
+                                    <groupname>root</groupname>
+                                    <filemode>644</filemode>
+                                    <dependency />
+                                </mapping>
+
+                                <!-- Put the compiled UDFs and such in the lib dir -->
+                                <mapping>
+                                    <directory>/opt/${packagedDirectoryName}/lib</directory>
+                                    <username>root</username>
+                                    <groupname>root</groupname>
+                                    <filemode>644</filemode>
+                                    <sources>
+                                        <source>
+                                            <location>target/${project.build.finalName}.jar</location>
+                                        </source>
+                                    </sources>
+                                </mapping>
+
+                            </mappings>
+                        </configuration>
+
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>attached-rpm</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>

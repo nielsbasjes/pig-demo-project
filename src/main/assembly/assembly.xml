@@ -30,15 +30,6 @@
       <filtered>false</filtered>
     </fileSet>
     <fileSet>
-      <directory>demolog</directory>
-      <outputDirectory>${packagedDirectoryName}/demolog</outputDirectory>
-      <includes>
-        <include>*.gz</include>
-      </includes>
-      <fileMode>0644</fileMode>
-      <filtered>false</filtered>
-    </fileSet>
-    <fileSet>
       <directory>src/main/resources</directory>
       <outputDirectory>${packagedDirectoryName}/etc</outputDirectory>
       <includes>

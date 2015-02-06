@@ -30,3 +30,13 @@ ENV JAVA_HOME /usr/lib/jvm/java
 
 # Set some aliases
 RUN echo "alias dir='ls -laF'" >> /root/.bashrc
+
+# Download Azkaban
+RUN curl -O https://s3.amazonaws.com/azkaban2/azkaban2/2.5.0/azkaban-solo-server-2.5.0.tar.gz
+RUN tar xzf azkaban-solo-server-2.5.0.tar.gz
+RUN sed -i 's@default.timezone.id=America/Los_Angeles@default.timezone.id=Europe/Amsterdam@g' azkaban-solo-2.5.0/conf/azkaban.properties
+RUN cd azkaban-solo-2.5.0 && ./bin/azkaban-solo-start.sh
+
+EXPOSE 8081
+
+

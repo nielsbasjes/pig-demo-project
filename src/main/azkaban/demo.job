@@ -1,0 +1,3 @@
+# WE USE A SHELL COMMAND BECAUSE THE 'pig' JOBTYPE IT DOES NOT YET SUPPORT THE NEW HADOOP API.
+type=command
+command=pig -param_file etc/AccessLogs.properties pig/demo.pig
