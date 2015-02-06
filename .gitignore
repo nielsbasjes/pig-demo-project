@@ -4,6 +4,10 @@ docker/_gnupg/random_seed
 docker/_gnupg/S.gpg-agent
 docker/_gnupg/private-keys-v1.d/
 
+develop
+
+
+
 # Created by .ignore support plugin (hsz.mobi)
 
 ### Java template
