@@ -210,7 +210,11 @@
                                     <sources>
                                         <source>
                                             <location>src/main/resources/</location>
+                                            <excludes>
+                                                <exclude>*.devel</exclude>
+                                            </excludes>
                                         </source>
+
                                     </sources>
                                 </mapping>
                                 <mapping>
