@@ -23,26 +23,7 @@
 
     <dependencies>
 
-        <!-- Get a PIG Loader from Maven Central -->
-        <dependency>
-            <groupId>nl.basjes.parse.httpdlog</groupId>
-            <artifactId>httpdlog-pigloader</artifactId>
-            <version>1.7</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.5</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>
-
+        <!--We need PIG for a pig project-->
         <dependency>
             <groupId>org.apache.pig</groupId>
             <artifactId>pig</artifactId>
@@ -51,12 +32,51 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--Which in turn needs Hadoop-->
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-client</artifactId>
             <version>${hadoop.version}</version>
             <scope>provided</scope>
         </dependency>
+
+
+        <!-- Get a PIG Loader from Maven Central -->
+        <dependency>
+            <groupId>nl.basjes.parse.httpdlog</groupId>
+            <artifactId>httpdlog-pigloader</artifactId>
+            <version>1.7</version>
+        </dependency>
+
+        <!--Need to choose the SLF4J backend-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.5</version>
+        </dependency>
+
+        <!--Testing the UDFs-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--And testing the script itself-->
+        <dependency>
+            <groupId>org.apache.pig</groupId>
+            <artifactId>pigunit</artifactId>
+            <version>${pig.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>jline</groupId>
+            <artifactId>jline</artifactId>
+            <version>0.9.94</version>
+            <scope>test</scope>
+        </dependency>
+
 
     </dependencies>
 

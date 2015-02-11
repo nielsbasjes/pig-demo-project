@@ -1,6 +1,6 @@
 REGISTER lib/*.jar;
 
-%declare LOGFILE   '${ACCESS_LOGPATH}/access*gz'
+%declare LOGFILE   '${ACCESS_LOGPATH}/access*.log*'
 %declare LOGFORMAT '${ACCESS_LOGFORMAT}'
 
 Clicks =
