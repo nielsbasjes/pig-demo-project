@@ -45,7 +45,7 @@
         <dependency>
             <groupId>nl.basjes.parse.httpdlog</groupId>
             <artifactId>httpdlog-pigloader</artifactId>
-            <version>1.7</version>
+            <version>1.8</version>
         </dependency>
 
         <!--Need to choose the SLF4J backend-->

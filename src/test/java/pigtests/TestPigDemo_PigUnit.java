@@ -6,7 +6,7 @@ import org.apache.pig.pigunit.PigTest;
 
 import java.io.IOException;
 
-public class TestPigDemo {
+public class TestPigDemo_PigUnit {
 
   @Test
   public void testPigScript() throws IOException, ParseException {
@@ -14,7 +14,8 @@ public class TestPigDemo {
     System.out.println("Working Directory = " +
             System.getProperty("user.dir"));
 
-    String[] arguments = {     };
+    String[] arguments = {
+    };
 
     String[] argumentFiles = {
             "src/main/resources/AccessLogs.properties"
